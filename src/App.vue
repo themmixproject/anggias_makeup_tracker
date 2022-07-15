@@ -1,17 +1,15 @@
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
     <MakeupTracker title="Lorem Ipsum" />
+    <MakeupTracker title="Title 2" />
+    <MakeupTracker title="Title 3" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import MakeupTracker from "./components/MakeupTracker.vue";
 
 export default {
     name: "App",
     components: {
-        HelloWorld,
         MakeupTracker
     }
 };
