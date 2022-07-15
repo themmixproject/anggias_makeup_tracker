@@ -6,7 +6,7 @@
 export default {
     methods: {
         addNewTracker() {
-            console.log("Hello");
+            this.$emit("displayNewTrackerForm");
         }
     }
 };
