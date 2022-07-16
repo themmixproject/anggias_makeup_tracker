@@ -2,10 +2,13 @@
     <MakeupTracker title="Lorem Ipsum" />
     <MakeupTracker title="Title 2" />
     <MakeupTracker title="Title 3" />
+    <MakeupTracker title="Title 3" />
+    <MakeupTracker title="Title 3" />
+    <MakeupTracker title="Title 3" />
     <AddTrackerButton @displayNewTrackerForm="toggleDisplayForm" />
     <NewTrackerForm
-        v-show="NewTrackerFormIsVisible"
-        @closeForm="toggleDisplayForm"
+        @toggleForm="toggleDisplayForm"
+        @createTracker="newTracker"
     />
 </template>
 
@@ -23,12 +26,17 @@ export default {
     },
     data() {
         return {
-            NewTrackerFormIsVisible: false
+            NewTrackerFormIsVisible: false,
+            trackers: []
         };
     },
     methods: {
         toggleDisplayForm() {
             this.NewTrackerFormIsVisible = !this.NewTrackerFormIsVisible;
+        },
+        newTracker() {
+            console.log("hello");
+            this.trackers;
         }
     }
 };
@@ -37,5 +45,9 @@ export default {
 <style lang="scss">
 body {
     margin: 0;
+}
+
+#app {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
