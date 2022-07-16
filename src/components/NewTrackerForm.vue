@@ -1,6 +1,14 @@
 <template>
     <div id="tracker-form-container">
-        <div @click="closeForm" id="form-close-button">X</div>
+        <div id="tracker-form-header">
+            <h1 id="tracker-form-title">Create new tracker</h1>
+            <div @click="closeForm" id="form-close-button">X</div>
+        </div>
+        <h2 class="form-input-title">Makeup name</h2>
+        <input type="text" class="form-input" />
+        <button @click="createTracker" id="create-tracker-button">
+            Create
+        </button>
     </div>
 </template>
 
@@ -8,7 +16,10 @@
 export default {
     methods: {
         closeForm() {
-            this.$emit("closeForm");
+            this.$emit("toggleForm");
+        },
+        createTracker() {
+            this.$emit("createTracker");
         }
     }
 };
@@ -23,6 +34,7 @@ export default {
     height: 180px;
     margin: 0 10px 0 10px;
     padding: 10px;
+    color: white;
 
     background-color: rgb(117, 117, 117);
 
@@ -31,16 +43,43 @@ export default {
     display: flex;
     flex-direction: column;
 
-    #form-close-button {
-        height: 30px;
-        width: 30px;
-        line-height: 30px;
-        color: white;
+    #tracker-form-header {
+        display: flex;
+        align-self: stretch;
+        margin-bottom: 5px;
 
-        background-color: red;
+        #tracker-form-title {
+            font-size: 1.3em;
+            margin: 0;
+        }
 
-        align-self: flex-end;
-        text-align: center;
+        #form-close-button {
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            color: white;
+
+            background-color: red;
+
+            margin-left: auto;
+            text-align: center;
+        }
+    }
+
+    .form-input-title {
+        margin: 0;
+        font-size: 0.8em;
+    }
+
+    .form-input {
+        font-size: 1.5em;
+    }
+
+    #create-tracker-button {
+        margin-top: auto;
+        align-self: flex-start;
+        padding: 10px;
+        font-size: 0.8em;
     }
 }
 </style>
