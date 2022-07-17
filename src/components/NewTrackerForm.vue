@@ -6,7 +6,11 @@
         </div>
         <h2 class="form-input-title">Makeup name</h2>
         <input type="text" class="form-input" v-model="title" />
-        <button @click="createTracker" id="create-tracker-button">
+        <button
+            @click="createTracker"
+            id="create-tracker-button"
+            :disabled="title === ''"
+        >
             Create
         </button>
     </div>
@@ -22,9 +26,11 @@ export default {
     methods: {
         closeForm() {
             this.$emit("toggleForm");
+            this.title = "";
         },
         createTracker() {
             this.$emit("createTracker", this.title);
+            this.title = "";
         }
     }
 };
