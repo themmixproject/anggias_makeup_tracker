@@ -1,6 +1,10 @@
 <template>
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
-        <MakeupTracker v-bind:title="tracker" />
+        <MakeupTracker
+            v-bind:title="tracker.title"
+            v-bind:startdate="tracker.startDate"
+            v-bind:enddate="tracker.endDate"
+        />
     </div>
     <AddTrackerButton @displayNewTrackerForm="toggleDisplayForm" />
     <NewTrackerForm
@@ -24,8 +28,8 @@ export default {
     },
     data() {
         return {
-            NewTrackerFormIsVisible: false,
-            trackers: []
+            NewTrackerFormIsVisible: true,
+            trackers: [{ title: "adfadf" }]
         };
     },
     methods: {

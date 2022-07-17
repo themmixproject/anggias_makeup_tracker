@@ -4,8 +4,15 @@
             <h1 id="tracker-form-title">Create new tracker</h1>
             <div @click="closeForm" id="form-close-button">X</div>
         </div>
-        <h2 class="form-input-title">Makeup name</h2>
+        <label class="form-input-title">Makeup name</label>
         <input type="text" class="form-input" v-model="title" />
+
+        <label class="form-input-title">Start date</label>
+        <input type="date" class="form-input" v-model="startDate" />
+
+        <label class="form-input-title">End date</label>
+        <input type="date" class="form-input" v-model="endDate" />
+
         <button
             @click="createTracker"
             id="create-tracker-button"
@@ -20,7 +27,9 @@
 export default {
     data() {
         return {
-            title: ""
+            title: "",
+            startDate: null,
+            endDate: null
         };
     },
     methods: {
@@ -29,7 +38,12 @@ export default {
             this.title = "";
         },
         createTracker() {
-            this.$emit("createTracker", this.title);
+            let trackerObject = {
+                title: this.title,
+                startDate: this.startDate,
+                endDate: this.endDate
+            };
+            this.$emit("createTracker", trackerObject);
             this.title = "";
         }
     }
@@ -42,7 +56,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 180px;
     margin: 0 10px 0 10px;
     padding: 10px;
     color: white;

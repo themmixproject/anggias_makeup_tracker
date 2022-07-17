@@ -3,8 +3,8 @@
         <div class="icon-placeholder"></div>
         <div class="content-container">
             <div class="tracker-title">{{ title }}</div>
-            <div class="tracker-date">Opened Date: 24/05/2022</div>
-            <div class="tracker-date">Due Date: 24/05/2022</div>
+            <div class="tracker-date">Opened Date: {{ startdate }}</div>
+            <div class="tracker-date">Due Date: {{ enddate }}</div>
             <div class="tracker-progress-bar">
                 <div class="tracker-progress-bar-indicator"></div>
             </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    props: ["title"]
+    props: ["title", "startdate", "enddate"]
 };
 </script>
 
