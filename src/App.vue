@@ -6,6 +6,7 @@
     <NewTrackerForm
         @toggleForm="toggleDisplayForm"
         @createTracker="newTracker"
+        v-show="NewTrackerFormIsVisible"
     />
 </template>
 
@@ -33,6 +34,7 @@ export default {
         },
         newTracker(trackerName) {
             this.trackers.push(trackerName);
+            this.toggleDisplayForm();
         }
     }
 };
