@@ -5,7 +5,7 @@
             <div @click="closeForm" id="form-close-button">X</div>
         </div>
         <h2 class="form-input-title">Makeup name</h2>
-        <input type="text" class="form-input" />
+        <input type="text" class="form-input" v-model="title" />
         <button @click="createTracker" id="create-tracker-button">
             Create
         </button>
@@ -14,12 +14,17 @@
 
 <script>
 export default {
+    data() {
+        return {
+            title: ""
+        };
+    },
     methods: {
         closeForm() {
             this.$emit("toggleForm");
         },
         createTracker() {
-            this.$emit("createTracker");
+            this.$emit("createTracker", this.title);
         }
     }
 };
@@ -80,6 +85,9 @@ export default {
         align-self: flex-start;
         padding: 10px;
         font-size: 0.8em;
+
+        background-color: rgb(158, 200, 255);
+        border: 0;
     }
 }
 </style>
