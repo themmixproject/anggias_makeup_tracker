@@ -1,10 +1,7 @@
 <template>
-    <MakeupTracker title="Lorem Ipsum" />
-    <MakeupTracker title="Title 2" />
-    <MakeupTracker title="Title 3" />
-    <MakeupTracker title="Title 3" />
-    <MakeupTracker title="Title 3" />
-    <MakeupTracker title="Title 3" />
+    <div v-for="(tracker, index) in trackers" v-bind:key="index">
+        <MakeupTracker v-bind:title="tracker" />
+    </div>
     <AddTrackerButton @displayNewTrackerForm="toggleDisplayForm" />
     <NewTrackerForm
         @toggleForm="toggleDisplayForm"
@@ -34,9 +31,8 @@ export default {
         toggleDisplayForm() {
             this.NewTrackerFormIsVisible = !this.NewTrackerFormIsVisible;
         },
-        newTracker() {
-            console.log("hello");
-            this.trackers;
+        newTracker(trackerName) {
+            this.trackers.push(trackerName);
         }
     }
 };
