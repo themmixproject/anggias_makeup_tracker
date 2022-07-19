@@ -1,9 +1,10 @@
 <template>
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
         <MakeupTracker
-            v-bind:title="tracker.title"
-            v-bind:startdate="tracker.startDate"
-            v-bind:enddate="tracker.endDate"
+            :title="tracker.title"
+            :startdate="tracker.startDate"
+            :enddate="tracker.endDate"
+            :food="apple"
         />
     </div>
     <AddTrackerButton @displayNewTrackerForm="toggleDisplayForm" />
@@ -29,7 +30,13 @@ export default {
     data() {
         return {
             NewTrackerFormIsVisible: true,
-            trackers: [{ title: "adfadf" }]
+            trackers: [
+                {
+                    title: "adfadf",
+                    startDate: "2022-07-10",
+                    endDate: "2022-07-25"
+                }
+            ]
         };
     },
     methods: {
