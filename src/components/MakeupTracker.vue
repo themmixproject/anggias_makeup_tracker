@@ -6,7 +6,10 @@
             <div class="tracker-date">Opened Date: {{ startdate }}</div>
             <div class="tracker-date">Due Date: {{ enddate }}</div>
             <div class="tracker-progress-bar">
-                <div class="tracker-progress-bar-indicator"></div>
+                <div
+                    class="tracker-progress-bar-indicator"
+                    :style="{ width: progressBarWidth }"
+                ></div>
             </div>
         </div>
     </div>
@@ -14,7 +17,54 @@
 
 <script>
 export default {
-    props: ["title", "startdate", "enddate"]
+    props: ["title", "startdate", "enddate", "food"],
+    date() {
+        return {
+            startDate: this.$props.startdate,
+            endDate: this.$props.enddate
+        };
+    },
+    computed: {
+        progressBarWidth() {
+            let startDate = new Date(this.$props.startdate);
+            let endDate = new Date(this.$props.enddate);
+            let currentDate = new Date(Date.now()).setHours(0, 0, 0, 0);
+
+            let diffStartEndDays = this.calcDiffInDays(startDate, endDate);
+            let diffCurrentEndDays = this.calcDiffInDays(
+                startDate,
+                currentDate
+            );
+
+            console.log("Current: " + diffCurrentEndDays);
+            console.log("Start: " + diffStartEndDays);
+
+            let widthPercentage = this.percentage(
+                diffCurrentEndDays,
+                diffStartEndDays
+            );
+
+            console.log(widthPercentage);
+
+            return String(widthPercentage) + "%";
+        }
+    },
+    methods: {
+        percentage(partialValue, totalValue) {
+            return (100 * partialValue) / totalValue;
+        },
+        calcDiffInDays(startDate, endDate) {
+            startDate = new Date(startDate);
+            endDate = new Date(endDate);
+
+            let startTime = startDate.getTime();
+            let endTime = endDate.getTime();
+
+            let diffStartEnd = endTime - startTime;
+
+            return diffStartEnd / (1000 * 3600 * 24);
+        }
+    }
 };
 </script>
 
@@ -71,7 +121,7 @@ export default {
             background-color: black;
             height: inherit;
 
-            width: 25%;
+            // width: 25%;
 
             border-radius: 100px;
         }
