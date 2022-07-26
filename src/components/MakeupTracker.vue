@@ -1,6 +1,8 @@
 <template>
     <div class="tracker-item">
-        <div class="icon-placeholder"></div>
+        <div class="icon-placeholder">
+            <inline-svg :src="icon"></inline-svg>
+        </div>
         <div class="content-container">
             <div class="tracker-title">{{ title }}</div>
             <div class="tracker-date">Opened Date: {{ startdate }}</div>
@@ -17,7 +19,7 @@
 
 <script>
 export default {
-    props: ["title", "startdate", "enddate", "food"],
+    props: ["title", "startdate", "enddate", "icon"],
     date() {
         return {
             startDate: this.$props.startdate,
