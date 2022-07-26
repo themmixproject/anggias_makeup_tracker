@@ -13,6 +13,8 @@
         <label class="form-input-title">End date</label>
         <input type="date" class="form-input" v-model="endDate" />
 
+        <IconSelector @selectIcon="setIcon" />
+
         <button
             @click="createTracker"
             id="create-tracker-button"
@@ -24,12 +26,18 @@
 </template>
 
 <script>
+import IconSelector from "./IconSelector.vue";
+
 export default {
+    components: {
+        IconSelector
+    },
     data() {
         return {
-            title: "",
-            startDate: null,
-            endDate: null
+            title: "test",
+            startDate: "2030-08-06",
+            endDate: "2030-08-07",
+            icon: ""
         };
     },
     methods: {
@@ -41,10 +49,15 @@ export default {
             let trackerObject = {
                 title: this.title,
                 startDate: this.startDate,
-                endDate: this.endDate
+                endDate: this.endDate,
+                icon: this.icon
             };
             this.$emit("createTracker", trackerObject);
             this.title = "";
+        },
+        setIcon(icon) {
+            console.log(icon);
+            this.icon = icon;
         }
     }
 };
