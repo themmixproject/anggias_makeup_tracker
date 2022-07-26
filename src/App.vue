@@ -4,7 +4,7 @@
             :title="tracker.title"
             :startdate="tracker.startDate"
             :enddate="tracker.endDate"
-            :food="apple"
+            :icon="tracker.icon"
         />
     </div>
     <AddTrackerButton @displayNewTrackerForm="toggleDisplayForm" />
@@ -34,7 +34,8 @@ export default {
                 {
                     title: "adfadf",
                     startDate: "2022-07-10",
-                    endDate: "2022-07-25"
+                    endDate: "2022-07-25",
+                    icon: "img/Cosmetic_Mascara.57ba9a86.svg"
                 }
             ]
         };
