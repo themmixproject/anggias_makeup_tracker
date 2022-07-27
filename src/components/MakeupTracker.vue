@@ -1,12 +1,18 @@
 <template>
     <div class="tracker-item">
         <div class="icon-placeholder">
-            <inline-svg :src="icon"></inline-svg>
+            <inline-svg :src="icon" class="icon-vector"></inline-svg>
         </div>
         <div class="content-container">
             <div class="tracker-title">{{ title }}</div>
-            <div class="tracker-date">Opened Date: {{ startdate }}</div>
-            <div class="tracker-date">Due Date: {{ enddate }}</div>
+            <div class="tracker-date-wrapper">
+                Opened Date:
+                <span class="tracker-date">{{ startDate }}</span>
+            </div>
+            <div class="tracker-date-wrapper">
+                Due Date:
+                <span class="tracker-date">{{ enddate }}</span>
+            </div>
             <div class="tracker-progress-bar">
                 <div
                     class="tracker-progress-bar-indicator"
@@ -38,17 +44,13 @@ export default {
                 currentDate
             );
 
-            console.log("Current: " + diffCurrentEndDays);
-            console.log("Start: " + diffStartEndDays);
-
             let widthPercentage = this.percentage(
                 diffCurrentEndDays,
                 diffStartEndDays
             );
 
-            console.log(widthPercentage);
-
-            return String(widthPercentage) + "%";
+            if (widthPercentage > 100) return "100%";
+            else return String(widthPercentage) + "%";
         }
     },
     methods: {
@@ -82,19 +84,26 @@ export default {
     background-color: lightcoral;
     padding: 0.5em;
     display: flex;
+
     .icon-placeholder {
-        height: 60px;
-        width: 60px;
+        height: 50px;
+        width: 50px;
         background-color: #d66161;
 
         border-radius: 50%;
         flex-shrink: 0;
         align-self: center;
+        padding: 10px;
+
+        .icon-vector {
+            height: inherit;
+            width: inherit;
+        }
     }
     .content-container {
-        padding-left: 1em;
+        padding-left: 0.5em;
         flex-grow: 1;
-        white-space: nowrap;
+        // white-space: nowrap;
         text-align: initial;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -109,9 +118,15 @@ export default {
             font-size: 1.5em;
             font-weight: normal;
 
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .tracker-date {
+            display: inline-block;
+        }
+
         .tracker-progress-bar {
             background-color: #d66161;
             height: 15px;
