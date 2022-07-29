@@ -56,7 +56,6 @@ export default {
             this.title = "";
         },
         setIcon(icon) {
-            console.log(icon);
             this.icon = icon;
         }
     }
