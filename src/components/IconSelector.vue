@@ -1,12 +1,14 @@
 <template>
     <div id="icon-container">
-        <inline-svg
+        <div
             v-for="(icon, key) in icons"
-            :src="icon"
             :key="key"
-            @click="selectIcon(icon)"
-            class="cosmetic-icon"
-        />
+            @click="selectIcon($event, icon)"
+            class="icon-wrapper"
+            :class="{ active: selectedIcon === icon }"
+        >
+            <inline-svg :src="icon" class="cosmetic-icon" />
+        </div>
     </div>
 </template>
 
@@ -33,7 +35,10 @@ export default {
             r.keys().forEach((key) => (icns[key] = r(key)));
             this.icons = icns;
         },
-        selectIcon(icon) {
+        selectIcon(event, icon) {
+            event.currentTarget.attributes;
+            this.selectedIcon = icon;
+            console.log(this.selectedIcon);
             this.$emit("selectIcon", icon);
         }
     }
@@ -48,8 +53,16 @@ export default {
     justify-content: space-evenly;
 }
 
-.cosmetic-icon {
+.icon-wrapper {
     height: 50px;
     width: 50px;
+
+    .cosmetic-icon {
+        height: inherit;
+        width: inherit;
+    }
+}
+.icon-wrapper.active {
+    background-color: hotpink;
 }
 </style>
