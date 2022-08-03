@@ -137,9 +137,6 @@ export default {
         .tracker-progress-bar-indicator {
             background-color: black;
             height: inherit;
-
-            // width: 25%;
-
             border-radius: 100px;
         }
     }
