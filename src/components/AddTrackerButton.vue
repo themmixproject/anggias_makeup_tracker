@@ -15,19 +15,18 @@ export default {
 <style lang="scss" scoped>
 #add-tracker-button {
     background-color: #61ced6;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
-    line-height: 60px;
+    line-height: 50px;
     text-align: center;
     color: white;
-    box-shadow: 1px 1px 20px 1px #00000082;
-
+    box-shadow: 0 0 0.8em 0.3em rgba(0, 0, 0, 0.1);
     outline: 0;
     border: 0;
 
     font-weight: bold;
-    font-size: 2.5em;
+    font-size: 3.5em;
 
     position: fixed;
     bottom: 15px;
