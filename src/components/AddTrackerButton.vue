@@ -6,7 +6,7 @@
 export default {
     methods: {
         displayForm() {
-            this.$emit("displayNewTrackerForm");
+            this.$emit("displayTrackerForm");
         }
     }
 };

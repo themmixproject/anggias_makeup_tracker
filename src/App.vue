@@ -10,9 +10,12 @@
     <tracker-form
         @toggleForm="toggleTrackerForm"
         @createTracker="newTracker"
-        v-show="NewTrackerFormIsVisible"
+        v-show="formIsVisible"
     />
-    <add-tracker-button />
+    <add-tracker-button
+        @displayTrackerForm="toggleTrackerForm"
+        v-show="!formIsVisible"
+    />
 </template>
 
 <script>
