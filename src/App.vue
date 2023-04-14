@@ -26,7 +26,7 @@ export default {
     },
     data() {
         return {
-            NewTrackerFormIsVisible: true,
+            formIsVisible: true,
             trackers: [
                 {
                     title: "adfadf",
@@ -38,8 +38,8 @@ export default {
         };
     },
     methods: {
-        toggleDisplayForm() {
-            this.NewTrackerFormIsVisible = !this.NewTrackerFormIsVisible;
+        toggleTrackerForm() {
+            this.formIsVisible = !this.formIsVisible;
         },
         newTracker(trackerName) {
             this.trackers.push(trackerName);
