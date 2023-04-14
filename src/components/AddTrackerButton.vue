@@ -1,5 +1,5 @@
 <template>
-    <div id="add-tracker-button" @click="displayForm">+</div>
+    <button id="add-tracker-button" @click="displayForm">+</button>
 </template>
 
 <script>
@@ -22,6 +22,9 @@ export default {
     text-align: center;
     color: white;
     box-shadow: 1px 1px 20px 1px #00000082;
+
+    outline: 0;
+    border: 0;
 
     font-weight: bold;
     font-size: 2.5em;
