@@ -7,7 +7,6 @@
             :icon="tracker.icon"
         />
     </div>
-    <bottom-menu></bottom-menu>
     <new-tracker-form
         @toggleForm="toggleDisplayForm"
         @createTracker="newTracker"
@@ -18,23 +17,21 @@
 <script>
 import MakeupTracker from "./components/MakeupTracker.vue";
 import NewTrackerForm from "./components/NewTrackerForm.vue";
-import BottomMenu from "./components/BottomMenu.vue";
 
 export default {
     name: "App",
     components: {
         MakeupTracker,
-        NewTrackerForm,
-        BottomMenu
+        NewTrackerForm
     },
     data() {
         return {
-            NewTrackerFormIsVisible: false,
+            NewTrackerFormIsVisible: true,
             trackers: [
                 {
                     title: "adfadf",
                     startDate: "2022-07-10",
-                    endDate: "2022-07-25",
+                    endDate: "2023-07-25",
                     icon: "img/Cosmetic_Mascara.57ba9a86.svg"
                 }
             ]
