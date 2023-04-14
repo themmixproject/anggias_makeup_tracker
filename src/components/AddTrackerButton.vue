@@ -1,11 +1,11 @@
 <template>
-    <div id="add-tracker-button" @click="addNewTracker">+</div>
+    <div id="add-tracker-button" @click="displayForm">+</div>
 </template>
 
 <script>
 export default {
     methods: {
-        addNewTracker() {
+        displayForm() {
             this.$emit("displayNewTrackerForm");
         }
     }

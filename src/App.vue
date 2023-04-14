@@ -12,17 +12,20 @@
         @createTracker="newTracker"
         v-show="NewTrackerFormIsVisible"
     />
+    <add-tracker-button />
 </template>
 
 <script>
 import MakeupTracker from "./components/MakeupTracker.vue";
 import TrackerForm from "./components/TrackerForm.vue";
+import AddTrackerButton from "./components/AddTrackerButton.vue";
 
 export default {
     name: "App",
     components: {
         MakeupTracker,
-        TrackerForm
+        TrackerForm,
+        AddTrackerButton
     },
     data() {
         return {
