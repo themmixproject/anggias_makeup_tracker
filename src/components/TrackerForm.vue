@@ -4,16 +4,31 @@
             <h1 id="tracker-form-title">Create new tracker</h1>
             <button @click="closeForm" id="form-close-button">✕</button>
         </div>
-        <label class="form-input-title">Makeup name</label>
-        <input type="text" class="form-input" v-model="title" />
+        <div class="form-input-container">
+            <div class="form-label-container">
+                <label>Makeup name:</label>
+            </div>
+            <input type="text" class="form-input" v-model="title" />
+        </div>
+        <div class="form-input-container">
+            <div class="form-label-container">
+                <label>Start date:</label>
+            </div>
+            <input type="date" class="form-input" v-model="startDate" />
+        </div>
+        <div class="form-input-container">
+            <div class="form-label-container">
+                <label>Expire date (in months):</label>
+            </div>
+            <input type="number" class="form-input" v-model="endDate" />
+        </div>
 
-        <label class="form-input-title">Start date</label>
-        <input type="date" class="form-input" v-model="startDate" />
-
-        <label class="form-input-title">End date</label>
-        <input type="date" class="form-input" v-model="endDate" />
-
-        <IconSelector @selectIcon="setIcon" />
+        <div id="icon-selector-container">
+            <div id="icon-selector-label-container">
+                <label>Select icon:</label>
+            </div>
+            <IconSelector @selectIcon="setIcon" />
+        </div>
 
         <button
             @click="createTracker"
@@ -81,13 +96,9 @@ button {
 
     border-radius: 20px 20px 0 0;
 
-    display: flex;
-    flex-direction: column;
-
     #tracker-form-header {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 5px;
 
         #tracker-form-title {
             font-size: 1.3em;
@@ -101,24 +112,54 @@ button {
             color: white;
         }
     }
+    .form-input-container {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: row;
 
-    .form-input-title {
-        margin: 0;
-        font-size: 0.8em;
+        .form-label-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            label {
+                margin: 0;
+                font-size: 1.2em;
+                text-align: left;
+                white-space: nowrap;
+                margin-right: 7px;
+            }
+        }
+
+        input {
+            font-size: 1.2em;
+            width: 100%;
+            padding: 3px;
+            margin: 0;
+            border: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
     }
 
-    .form-input {
-        font-size: 1.5em;
+    #icon-selector-container {
+        margin: 10px 0;
+
+        #icon-selector-label-container {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
     }
 
     #create-tracker-button {
-        margin-top: auto;
-        align-self: flex-start;
         padding: 10px;
-        font-size: 0.8em;
+        font-size: 1em;
 
         background-color: rgb(158, 200, 255);
         border: 0;
+
+        width: 100%;
+        color: white;
+        border-radius: 50px;
     }
 }
 </style>
