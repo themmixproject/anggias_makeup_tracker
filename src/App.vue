@@ -1,4 +1,9 @@
 <template>
+    <tracker-form
+        @toggleForm="toggleTrackerForm"
+        @createNewTracker="addTrackerToList"
+        v-show="formIsVisible"
+    />
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
         <MakeupTracker
             :trackerData="tracker"
@@ -6,11 +11,6 @@
             @deleteTracker="deleteTrackerFromList"
         />
     </div>
-    <tracker-form
-        @toggleForm="toggleTrackerForm"
-        @createNewTracker="addTrackerToList"
-        v-show="formIsVisible"
-    />
     <add-tracker-button
         @displayTrackerForm="toggleTrackerForm"
         v-show="!formIsVisible"
@@ -31,7 +31,7 @@ export default {
     },
     data() {
         return {
-            formIsVisible: true,
+            formIsVisible: false,
             trackers: [
                 {
                     makeupName: "adfadf",

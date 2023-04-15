@@ -2,8 +2,19 @@
     <div class="tracker-list-item">
         <div class="meatball-menu-wrapper">
             <div
+                class="meatball-menu-overlay"
+                v-show="meatballOverlayDisplay"
+                @click="
+                    toggleMeatballMenu();
+                    toggleMeatballMenuOverlay();
+                "
+            ></div>
+            <div
                 class="meatball-menu-icon-container"
-                @click="toggleMeatballMenu"
+                @click="
+                    toggleMeatballMenu();
+                    toggleMeatballMenuOverlay();
+                "
             >
                 <div class="meatball-menu-icon"></div>
                 <div class="meatball-menu-icon"></div>
@@ -52,7 +63,8 @@ export default {
     props: ["trackerData", "trackerIndex"],
     data() {
         return {
-            meatballMenuDisplay: true,
+            meatballMenuDisplay: false,
+            meatballOverlayDisplay: false,
             approxExpireDate: new Date()
         };
     },
@@ -101,6 +113,9 @@ export default {
         toggleMeatballMenu() {
             this.meatballMenuDisplay = !this.meatballMenuDisplay;
         },
+        toggleMeatballMenuOverlay() {
+            this.meatballOverlayDisplay = !this.meatballOverlayDisplay;
+        },
         deleteTracker() {
             this.$emit("deleteTracker", this.trackerIndex);
         }
@@ -118,6 +133,14 @@ export default {
 }
 .meatball-menu-wrapper {
     position: relative;
+    .meatball-menu-overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: transparent;
+    }
 
     .meatball-menu-icon-container {
         display: flex;
@@ -138,7 +161,7 @@ export default {
     .meatball-menu-container {
         position: absolute;
         right: 0px;
-        top: 12px;
+        top: 20px;
         background-color: rgb(228, 228, 228);
         border-radius: 10px;
 
