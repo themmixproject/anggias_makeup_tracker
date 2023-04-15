@@ -2,10 +2,8 @@
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
         <MakeupTracker
             :trackerData="tracker"
-            :title="tracker.title"
-            :startdate="tracker.startDate"
-            :enddate="tracker.endDate"
-            :icon="tracker.icon"
+            :trackerIndex="index"
+            @deleteTracker="deleteTrackerFromList"
         />
     </div>
     <tracker-form
@@ -39,7 +37,18 @@ export default {
                     makeupName: "adfadf",
                     openedDate: "2023-04-5",
                     expiresInMonths: 1,
-                    // iconPath: "img/Cosmetic_Mascara.57ba9a86.svg"
+                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
+                },
+                {
+                    makeupName: "43ref",
+                    openedDate: "2023-04-5",
+                    expiresInMonths: 1,
+                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
+                },
+                {
+                    makeupName: "cvnre",
+                    openedDate: "2023-04-5",
+                    expiresInMonths: 1,
                     iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
                 }
             ]
@@ -52,6 +61,9 @@ export default {
         addTrackerToList(trackerData) {
             this.trackers.push(trackerData);
             this.toggleDisplayForm();
+        },
+        deleteTrackerFromList(trackerIndex) {
+            this.trackers.splice(trackerIndex, 1);
         }
     }
 };

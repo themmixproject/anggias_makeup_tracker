@@ -33,7 +33,7 @@
         <button
             @click="createTracker"
             id="create-tracker-button"
-            :disabled="title === ''"
+            :disabled="makeupName === ''"
         >
             Create
         </button>
@@ -50,8 +50,8 @@ export default {
     data() {
         return {
             makeupName: "test",
-            openedDate: "2030-08-06",
-            expiresInMonths: "2030-08-07",
+            openedDate: "2023-01-04",
+            expiresInMonths: 0,
             selectedIconPath: ""
         };
     },

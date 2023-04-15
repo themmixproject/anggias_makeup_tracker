@@ -10,8 +10,9 @@
                 <div class="meatball-menu-icon"></div>
             </div>
             <div class="meatball-menu-container" v-show="meatballMenuDisplay">
-                <div class="meatball-menu-item">delete</div>
-                <div class="meatball-menu-item">edit</div>
+                <div class="meatball-menu-item" @click="deleteTracker">
+                    delete
+                </div>
             </div>
         </div>
         <div class="tracker-list-item-content-container">
@@ -48,12 +49,10 @@
 
 <script>
 export default {
-    props: ["trackerData"],
+    props: ["trackerData", "trackerIndex"],
     data() {
         return {
-            startDate: this.$props.startdate,
-            endDate: this.$props.enddate,
-            meatballMenuDisplay: false,
+            meatballMenuDisplay: true,
             approxExpireDate: new Date()
         };
     },
@@ -63,8 +62,6 @@ export default {
             let approxExpireDate = new Date(openedDate).setMonth(
                 openedDate.getMonth() + this.trackerData.expiresInMonths
             );
-
-            console.log(openedDate);
 
             let diffOpenedAndExpireInDays = this.calcDiffInDays(
                 openedDate,
@@ -103,10 +100,10 @@ export default {
         },
         toggleMeatballMenu() {
             this.meatballMenuDisplay = !this.meatballMenuDisplay;
+        },
+        deleteTracker() {
+            this.$emit("deleteTracker", this.trackerIndex);
         }
-    },
-    mounted() {
-        console.log(this.trackerData);
     }
 };
 </script>
