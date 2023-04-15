@@ -60,7 +60,7 @@ export default {
         },
         addTrackerToList(trackerData) {
             this.trackers.push(trackerData);
-            this.toggleDisplayForm();
+            this.toggleTrackerForm();
         },
         deleteTrackerFromList(trackerIndex) {
             this.trackers.splice(trackerIndex, 1);

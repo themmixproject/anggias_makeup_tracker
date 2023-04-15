@@ -33,7 +33,7 @@
         <button
             @click="createTracker"
             id="create-tracker-button"
-            :disabled="makeupName === ''"
+            :disabled="makeupName === '' || selectedIconPath === ''"
         >
             Create
         </button>
@@ -57,7 +57,7 @@ export default {
     },
     methods: {
         closeForm() {
-            this.$emit("toggleForm");
+            this.$emit("toggleDisplayForm");
             this.title = "";
         },
         createTracker() {
