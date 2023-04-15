@@ -8,26 +8,26 @@
             <div class="form-label-container">
                 <label>Makeup name:</label>
             </div>
-            <input type="text" class="form-input" v-model="title" />
+            <input type="text" class="form-input" v-model="makeupName" />
         </div>
         <div class="form-input-container">
             <div class="form-label-container">
                 <label>Start date:</label>
             </div>
-            <input type="date" class="form-input" v-model="startDate" />
+            <input type="date" class="form-input" v-model="openedDate" />
         </div>
         <div class="form-input-container">
             <div class="form-label-container">
                 <label>Expire date (in months):</label>
             </div>
-            <input type="number" class="form-input" v-model="endDate" />
+            <input type="number" class="form-input" v-model="expiresInMonths" />
         </div>
 
         <div id="icon-selector-container">
             <div id="icon-selector-label-container">
                 <label>Select icon:</label>
             </div>
-            <IconSelector @selectIcon="setIcon" />
+            <IconSelector @selectIcon="setSelectedIconPath" />
         </div>
 
         <button
@@ -49,10 +49,10 @@ export default {
     },
     data() {
         return {
-            title: "test",
-            startDate: "2030-08-06",
-            endDate: "2030-08-07",
-            icon: ""
+            makeupName: "test",
+            openedDate: "2030-08-06",
+            expiresInMonths: "2030-08-07",
+            selectedIconPath: ""
         };
     },
     methods: {
@@ -61,17 +61,17 @@ export default {
             this.title = "";
         },
         createTracker() {
-            let trackerObject = {
-                title: this.title,
-                startDate: this.startDate,
-                endDate: this.endDate,
-                icon: this.icon
+            let trackerData = {
+                makeupName: this.title,
+                openedDate: this.openedDate,
+                expiresInMonths: this.expiresInMonths,
+                iconPath: this.selectedIconPath
             };
-            this.$emit("createTracker", trackerObject);
-            this.title = "";
+            this.$emit("createNewTracker", trackerData);
+            this.makeupName = "";
         },
-        setIcon(icon) {
-            this.icon = icon;
+        setSelectedIconPath(iconPath) {
+            this.selectedIconPath = iconPath;
         }
     }
 };

@@ -16,17 +16,24 @@
         </div>
         <div class="tracker-list-item-content-container">
             <div class="icon-container">
-                <inline-svg :src="icon" class="icon-vector"></inline-svg>
+                <inline-svg
+                    :src="trackerData.iconPath"
+                    class="icon-vector"
+                ></inline-svg>
             </div>
             <div class="tracker-list-item-attribute-container">
-                <div class="tracker-title">{{ title }}</div>
+                <div class="tracker-title">{{ trackerData.makeupName }}</div>
                 <div class="tracker-date-wrapper">
                     Opened Date:
-                    <span class="tracker-date">{{ startDate }}</span>
+                    <span class="tracker-date">{{
+                        trackerData.openedDate
+                    }}</span>
                 </div>
                 <div class="tracker-date-wrapper">
                     Due Date:
-                    <span class="tracker-date">{{ enddate }}</span>
+                    <span class="tracker-date">{{
+                        trackerData.expiresInMonths
+                    }}</span>
                 </div>
                 <div class="tracker-progress-bar">
                     <div
@@ -41,29 +48,38 @@
 
 <script>
 export default {
-    props: ["title", "startdate", "enddate", "icon"],
+    props: ["trackerData"],
     data() {
         return {
             startDate: this.$props.startdate,
             endDate: this.$props.enddate,
-            meatballMenuDisplay: false
+            meatballMenuDisplay: false,
+            approxExpireDate: new Date()
         };
     },
     computed: {
         progressBarWidth() {
-            let startDate = new Date(this.$props.startdate);
-            let endDate = new Date(this.$props.enddate);
-            let currentDate = new Date(Date.now()).setHours(0, 0, 0, 0);
+            let openedDate = new Date(this.trackerData.openedDate);
+            let approxExpireDate = new Date(openedDate).setMonth(
+                openedDate.getMonth() + this.trackerData.expiresInMonths
+            );
 
-            let diffStartEndDays = this.calcDiffInDays(startDate, endDate);
-            let diffCurrentEndDays = this.calcDiffInDays(
-                startDate,
+            console.log(openedDate);
+
+            let diffOpenedAndExpireInDays = this.calcDiffInDays(
+                openedDate,
+                approxExpireDate
+            );
+
+            let currentDate = new Date(Date.now()).setHours(0, 0, 0, 0);
+            let diffCurrentEndInDays = this.calcDiffInDays(
+                openedDate,
                 currentDate
             );
 
             let widthPercentage = this.percentage(
-                diffCurrentEndDays,
-                diffStartEndDays
+                diffCurrentEndInDays,
+                diffOpenedAndExpireInDays
             );
 
             if (widthPercentage > 100) return "100%";
@@ -88,6 +104,9 @@ export default {
         toggleMeatballMenu() {
             this.meatballMenuDisplay = !this.meatballMenuDisplay;
         }
+    },
+    mounted() {
+        console.log(this.trackerData);
     }
 };
 </script>

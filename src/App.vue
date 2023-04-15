@@ -1,6 +1,7 @@
 <template>
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
         <MakeupTracker
+            :trackerData="tracker"
             :title="tracker.title"
             :startdate="tracker.startDate"
             :enddate="tracker.endDate"
@@ -9,7 +10,7 @@
     </div>
     <tracker-form
         @toggleForm="toggleTrackerForm"
-        @createTracker="newTracker"
+        @createNewTracker="addTrackerToList"
         v-show="formIsVisible"
     />
     <add-tracker-button
@@ -35,10 +36,11 @@ export default {
             formIsVisible: true,
             trackers: [
                 {
-                    title: "adfadf",
-                    startDate: "2022-07-10",
-                    endDate: "2023-07-25",
-                    icon: "img/Cosmetic_Mascara.57ba9a86.svg"
+                    makeupName: "adfadf",
+                    openedDate: "2023-04-5",
+                    expiresInMonths: 1,
+                    // iconPath: "img/Cosmetic_Mascara.57ba9a86.svg"
+                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
                 }
             ]
         };
@@ -47,8 +49,8 @@ export default {
         toggleTrackerForm() {
             this.formIsVisible = !this.formIsVisible;
         },
-        newTracker(trackerName) {
-            this.trackers.push(trackerName);
+        addTrackerToList(trackerData) {
+            this.trackers.push(trackerData);
             this.toggleDisplayForm();
         }
     }
