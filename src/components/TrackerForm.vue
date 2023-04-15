@@ -2,7 +2,7 @@
     <div id="tracker-form-container">
         <div id="tracker-form-header">
             <h1 id="tracker-form-title">Create new tracker</h1>
-            <div @click="closeForm" id="form-close-button">X</div>
+            <button @click="closeForm" id="form-close-button">✕</button>
         </div>
         <label class="form-input-title">Makeup name</label>
         <input type="text" class="form-input" v-model="title" />
@@ -63,6 +63,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+button {
+    border: 0;
+    outline: 0;
+}
+
 #tracker-form-container {
     position: fixed;
     bottom: 0;
@@ -81,7 +86,7 @@ export default {
 
     #tracker-form-header {
         display: flex;
-        align-self: stretch;
+        justify-content: space-between;
         margin-bottom: 5px;
 
         #tracker-form-title {
@@ -90,15 +95,10 @@ export default {
         }
 
         #form-close-button {
-            height: 30px;
-            width: 30px;
-            line-height: 30px;
+            background-color: transparent;
+            font-size: 1.5em;
+            padding: 0;
             color: white;
-
-            background-color: red;
-
-            margin-left: auto;
-            text-align: center;
         }
     }
 
