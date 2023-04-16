@@ -72,9 +72,11 @@ export default {
         addTrackerToList(trackerData) {
             this.trackers.push(trackerData);
             this.toggleTrackerForm();
+            this.saveChanges();
         },
         deleteTrackerFromList(trackerIndex) {
             this.trackers.splice(trackerIndex, 1);
+            this.saveChanges();
         },
         editTracker(trackerIndex) {
             this.toggleTrackerForm();
@@ -86,6 +88,10 @@ export default {
             this.toggleTrackerForm();
             this.editTrackerData = null;
             this.editTrackerIndex = -1;
+            this.saveChanges();
+        },
+        saveChanges() {
+            console.log("saveChanges");
         }
     }
 };
