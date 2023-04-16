@@ -1,7 +1,8 @@
 <template>
     <div id="tracker-form-container">
         <div id="tracker-form-header">
-            <h1 id="tracker-form-title">Create new tracker</h1>
+            <h1 v-if="editTrackerData">Edit Tracker</h1>
+            <h1 v-else>Create New Tracker</h1>
             <button @click="closeForm" id="form-close-button">✕</button>
         </div>
         <div class="form-input-container">
@@ -27,10 +28,18 @@
             <div id="icon-selector-label-container">
                 <label>Select icon:</label>
             </div>
-            <IconSelector @selectIcon="setSelectedIconPath" />
+            <IconSelector
+                @selectIcon="setSelectedIconPath"
+                :editTrackerIconPath="selectedIconPath"
+            />
         </div>
 
+        <div id="edit-tracker-button-container" v-if="editTrackerData">
+            <button @click="confirmEdit">Confirm</button>
+            <button @click="closeForm">Cancel</button>
+        </div>
         <button
+            v-else
             @click="createTracker"
             id="create-tracker-button"
             :disabled="makeupName === '' || selectedIconPath === ''"
@@ -44,6 +53,7 @@
 import IconSelector from "./IconSelector.vue";
 
 export default {
+    props: ["editTrackerIndex", "editTrackerData"],
     components: {
         IconSelector
     },
@@ -52,17 +62,19 @@ export default {
             makeupName: "test",
             openedDate: "2023-01-04",
             expiresInMonths: 0,
-            selectedIconPath: ""
+            selectedIconPath: "",
+            editTrackerDataIsLoaded: false
         };
     },
     methods: {
         closeForm() {
             this.$emit("toggleDisplayForm");
-            this.title = "";
+            this.makeupName = "";
+            this.editTrackerDataIsLoaded = false;
         },
         createTracker() {
             let trackerData = {
-                makeupName: this.title,
+                makeupName: this.makeupName,
                 openedDate: this.openedDate,
                 expiresInMonths: this.expiresInMonths,
                 iconPath: this.selectedIconPath
@@ -70,8 +82,32 @@ export default {
             this.$emit("createNewTracker", trackerData);
             this.makeupName = "";
         },
+        confirmEdit() {
+            let trackerData = {
+                makeupName: this.makeupName,
+                openedDate: this.openedDate,
+                expiresInMonths: this.expiresInMonths,
+                iconPath: this.selectedIconPath
+            };
+
+            this.$emit(
+                "confirmEditTracker",
+                this.editTrackerIndex,
+                trackerData
+            );
+        },
         setSelectedIconPath(iconPath) {
             this.selectedIconPath = iconPath;
+        }
+    },
+    updated() {
+        if (this.editTrackerData && !this.editTrackerDataIsLoaded) {
+            this.makeupName = this.editTrackerData.makeupName;
+            this.openedDate = this.editTrackerData.openedDate;
+            this.expiresInMonths = this.editTrackerData.expiresInMonths;
+            this.selectedIconPath = this.editTrackerData.iconPath;
+
+            this.editTrackerDataIsLoaded = true;
         }
     }
 };
@@ -100,7 +136,7 @@ button {
         display: flex;
         justify-content: space-between;
 
-        #tracker-form-title {
+        h1 {
             font-size: 1.3em;
             margin: 0;
         }
@@ -160,6 +196,26 @@ button {
         width: 100%;
         color: white;
         border-radius: 50px;
+    }
+
+    #edit-tracker-button-container {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        button {
+            padding: 10px;
+            font-size: 1em;
+
+            background-color: rgb(158, 200, 255);
+            border: 0;
+
+            width: 100%;
+            color: white;
+            border-radius: 50px;
+
+            margin: 0;
+        }
     }
 }
 </style>

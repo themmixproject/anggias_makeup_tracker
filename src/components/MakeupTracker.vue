@@ -24,6 +24,7 @@
                 <div class="meatball-menu-item" @click="deleteTracker">
                     delete
                 </div>
+                <div class="meatball-menu-item" @click="editTracker">edit</div>
             </div>
         </div>
         <div class="tracker-list-item-content-container">
@@ -118,6 +119,13 @@ export default {
         },
         deleteTracker() {
             this.$emit("deleteTracker", this.trackerIndex);
+            this.toggleMeatballMenu();
+            this.toggleMeatballMenuOverlay;
+        },
+        editTracker() {
+            this.$emit("editTracker", this.trackerIndex);
+            this.toggleMeatballMenu();
+            this.toggleMeatballMenuOverlay();
         }
     }
 };

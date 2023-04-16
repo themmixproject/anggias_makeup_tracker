@@ -1,19 +1,20 @@
 <template>
     <div id="icon-container">
         <div
-            v-for="(icon, key) in icons"
+            v-for="(iconPath, key) in icons"
             :key="key"
-            @click="selectIcon($event, icon)"
+            @click="selectIcon($event, iconPath)"
             class="icon-wrapper"
-            :class="{ active: selectedIcon === icon }"
+            :class="{ active: selectedIcon === iconPath }"
         >
-            <inline-svg :src="icon" class="cosmetic-icon" />
+            <inline-svg :src="iconPath" class="cosmetic-icon" />
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: ["editTrackerIconPath"],
     data() {
         return {
             icons: {},
@@ -35,11 +36,17 @@ export default {
             r.keys().forEach((key) => (icns[key] = r(key)));
             this.icons = icns;
         },
-        selectIcon(event, icon) {
-            event.currentTarget.attributes;
-            this.selectedIcon = icon;
+        selectIcon(event, iconPath) {
+            console.log(this.icons);
+
+            this.selectedIcon = iconPath;
             console.log(this.selectedIcon);
-            this.$emit("selectIcon", icon);
+            this.$emit("selectIcon", iconPath);
+        }
+    },
+    updated() {
+        if (this.editTrackerIconPath !== "") {
+            this.selectedIcon = this.editTrackerIconPath;
         }
     }
 };
