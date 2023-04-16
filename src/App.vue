@@ -39,26 +39,7 @@ export default {
             editTrackerData: null,
             editTrackerIndex: 0,
             formIsDisplayed: false,
-            trackers: [
-                {
-                    makeupName: "adfadf",
-                    openedDate: "2023-04-05",
-                    expiresInMonths: 1,
-                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
-                },
-                {
-                    makeupName: "43ref",
-                    openedDate: "2023-04-05",
-                    expiresInMonths: 1,
-                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
-                },
-                {
-                    makeupName: "cvnre",
-                    openedDate: "2023-04-05",
-                    expiresInMonths: 1,
-                    iconPath: "/img/Cosmetic_Palette.e169cc48.svg"
-                }
-            ]
+            trackers: []
         };
     },
     methods: {
@@ -91,7 +72,19 @@ export default {
             this.saveChanges();
         },
         saveChanges() {
-            console.log("saveChanges");
+            let cookieExpireDate = new Date();
+            cookieExpireDate.setDate(cookieExpireDate.getDate() + 30);
+            this.$cookies.set(
+                "trackers",
+                JSON.stringify(this.trackers),
+                cookieExpireDate
+            );
+        }
+    },
+    mounted() {
+        let savedTrackers = this.$cookies.get("trackers");
+        if (savedTrackers !== null) {
+            this.trackers = savedTrackers;
         }
     }
 };
