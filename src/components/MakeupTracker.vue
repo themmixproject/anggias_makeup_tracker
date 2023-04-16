@@ -4,7 +4,11 @@
             <div
                 class="meatball-menu-overlay"
                 v-show="meatballOverlayDisplay"
-                @click="
+                @mousedown="
+                    toggleMeatballMenu();
+                    toggleMeatballMenuOverlay();
+                "
+                @touchstart="
                     toggleMeatballMenu();
                     toggleMeatballMenuOverlay();
                 "
