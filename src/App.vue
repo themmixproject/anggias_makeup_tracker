@@ -2,10 +2,11 @@
     <tracker-form
         :editTrackerIndex="editTrackerIndex"
         :editTrackerData="editTrackerData"
+        :formIsDisplayed="formIsDisplayed"
         @toggleDisplayForm="toggleTrackerForm"
         @createNewTracker="addTrackerToList"
         @confirmEditTracker="confirmEditTracker"
-        v-show="formIsVisible"
+        v-show="formIsDisplayed"
     />
     <div v-for="(tracker, index) in trackers" v-bind:key="index">
         <MakeupTracker
@@ -17,7 +18,7 @@
     </div>
     <add-tracker-button
         @displayTrackerForm="toggleTrackerForm"
-        v-show="!formIsVisible"
+        v-show="!formIsDisplayed"
     />
 </template>
 
@@ -37,7 +38,7 @@ export default {
         return {
             editTrackerData: null,
             editTrackerIndex: 0,
-            formIsVisible: false,
+            formIsDisplayed: false,
             trackers: [
                 {
                     makeupName: "adfadf",
@@ -62,7 +63,7 @@ export default {
     },
     methods: {
         toggleTrackerForm() {
-            this.formIsVisible = !this.formIsVisible;
+            this.formIsDisplayed = !this.formIsDisplayed;
             if (this.editTrackerData) {
                 this.editTrackerData = null;
                 this.editTrackerIndex = -1;

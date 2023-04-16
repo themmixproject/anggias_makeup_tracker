@@ -9,7 +9,12 @@
             <div class="form-label-container">
                 <label>Makeup name:</label>
             </div>
-            <input type="text" class="form-input" v-model="makeupName" />
+            <input
+                type="text"
+                class="form-input"
+                ref="makeupNameInput"
+                v-model="makeupName"
+            />
         </div>
         <div class="form-input-container">
             <div class="form-label-container">
@@ -53,24 +58,24 @@
 import IconSelector from "./IconSelector.vue";
 
 export default {
-    props: ["editTrackerIndex", "editTrackerData"],
+    props: ["editTrackerIndex", "editTrackerData", "formIsDisplayed"],
     components: {
         IconSelector
     },
     data() {
         return {
-            makeupName: "test",
-            openedDate: "2023-01-04",
+            makeupName: "",
+            openedDate: "",
             expiresInMonths: 0,
             selectedIconPath: "",
-            editTrackerDataIsLoaded: false
+            formValuesAreLoaded: false
         };
     },
     methods: {
         closeForm() {
             this.$emit("toggleDisplayForm");
             this.makeupName = "";
-            this.editTrackerDataIsLoaded = false;
+            this.formValuesAreLoaded = false;
         },
         createTracker() {
             let trackerData = {
@@ -98,17 +103,47 @@ export default {
         },
         setSelectedIconPath(iconPath) {
             this.selectedIconPath = iconPath;
+        },
+        loadDefaultValues() {
+            this.makeupName = "";
+            this.openedDate = this.getCurrentDateString();
+            this.expiresInMonths = 1;
+            this.iconPath = "";
+        },
+        getCurrentDateString() {
+            let today = new Date();
+            let day = String(today.getDate()).padStart(2, "0");
+            let month = String(today.getMonth() + 1).padStart(2, "0");
+            let year = today.getFullYear();
+
+            return year + "-" + month + "-" + day;
         }
     },
     updated() {
-        if (this.editTrackerData && !this.editTrackerDataIsLoaded) {
-            this.makeupName = this.editTrackerData.makeupName;
-            this.openedDate = this.editTrackerData.openedDate;
-            this.expiresInMonths = this.editTrackerData.expiresInMonths;
-            this.selectedIconPath = this.editTrackerData.iconPath;
+        if (this.formIsDisplayed) {
+            if (this.editTrackerData !== null && !this.formValuesAreLoaded) {
+                this.makeupName = this.editTrackerData.makeupName;
+                this.openedDate = this.editTrackerData.openedDate;
+                this.expiresInMonths = this.editTrackerData.expiresInMonths;
+                this.selectedIconPath = this.editTrackerData.iconPath;
+            } else if (
+                this.editTrackerData === null &&
+                !this.formValuesAreLoaded
+            ) {
+                this.loadDefaultValues();
+                this.$refs.makeupNameInput.focus();
+            }
 
-            this.editTrackerDataIsLoaded = true;
+            this.formValuesAreLoaded = true;
         }
+
+        // else if (this.editTrackerData === null && !this.formValuesAreLoaded) {
+        //     this.formValuesAreLoaded = true;
+        // }
+    },
+    mounted() {
+        // this.loadDefaultValues();
+        // this.formValuesAreLoaded = true;
     }
 };
 </script>
