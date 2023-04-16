@@ -35,6 +35,7 @@
             </div>
             <IconSelector
                 @selectIcon="setSelectedIconPath"
+                @iconsLoaded="setDefaultIconPath"
                 :editTrackerIconPath="selectedIconPath"
             />
         </div>
@@ -68,7 +69,8 @@ export default {
             openedDate: "",
             expiresInMonths: 0,
             selectedIconPath: "",
-            formValuesAreLoaded: false
+            formValuesAreLoaded: false,
+            defaultIconPath: ""
         };
     },
     methods: {
@@ -83,8 +85,10 @@ export default {
                 expiresInMonths: this.expiresInMonths,
                 iconPath: this.selectedIconPath
             };
+
+            this.formValuesAreLoaded = false;
+
             this.$emit("createNewTracker", trackerData);
-            this.makeupName = "";
         },
         confirmEdit() {
             let trackerData = {
@@ -109,7 +113,7 @@ export default {
             this.makeupName = "";
             this.openedDate = this.getCurrentDateString();
             this.expiresInMonths = 1;
-            this.iconPath = "";
+            this.selectedIconPath = this.defaultIconPath;
         },
         getCurrentDateString() {
             let today = new Date();
@@ -118,6 +122,9 @@ export default {
             let year = today.getFullYear();
 
             return year + "-" + month + "-" + day;
+        },
+        setDefaultIconPath(icons) {
+            this.defaultIconPath = icons[Object.keys(icons)[0]];
         }
     },
     updated() {

@@ -35,6 +35,8 @@ export default {
             let icns = {};
             r.keys().forEach((key) => (icns[key] = r(key)));
             this.icons = icns;
+
+            this.$emit("iconsLoaded", this.icons);
         },
         selectIcon(event, iconPath) {
             console.log(this.icons);
