@@ -74,7 +74,6 @@ export default {
     methods: {
         closeForm() {
             this.$emit("toggleDisplayForm");
-            this.makeupName = "";
             this.formValuesAreLoaded = false;
         },
         createTracker() {
@@ -94,6 +93,8 @@ export default {
                 expiresInMonths: this.expiresInMonths,
                 iconPath: this.selectedIconPath
             };
+
+            this.formValuesAreLoaded = false;
 
             this.$emit(
                 "confirmEditTracker",
