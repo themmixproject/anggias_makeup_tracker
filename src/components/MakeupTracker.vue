@@ -139,7 +139,7 @@ export default {
 .tracker-list-item {
     margin: 10px;
     border-radius: 20px;
-    background-color: lightcoral;
+    background-color: #ffa0d1;
     padding: 0.5em;
     padding-right: 0.8em;
 }
@@ -166,7 +166,7 @@ export default {
             width: 8px;
             margin: 0 1.5px;
             border-radius: 50%;
-            background-color: black;
+            background-color: #15031b;
         }
     }
 
@@ -194,7 +194,7 @@ export default {
     .icon-container {
         height: 50px;
         width: 50px;
-        background-color: #d66161;
+        background-color: #e585b6;
 
         border-radius: 50%;
         flex-shrink: 0;
@@ -236,14 +236,14 @@ export default {
         }
 
         .tracker-progress-bar {
-            background-color: #d66161;
+            background-color: #df68a4;
             height: 15px;
 
             border-radius: 20px;
         }
 
         .tracker-progress-bar-indicator {
-            background-color: black;
+            background-color: #a10956;
             height: inherit;
             border-radius: 100px;
         }

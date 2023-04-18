@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
 #add-tracker-button {
-    background-color: #61ced6;
+    background-color: #dd0072;
     height: 50px;
     width: 50px;
     border-radius: 50%;

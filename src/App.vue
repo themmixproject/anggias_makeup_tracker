@@ -93,6 +93,7 @@ export default {
 <style lang="scss">
 body {
     margin: 0;
+    background-color: #15031b;
 }
 
 #app {
