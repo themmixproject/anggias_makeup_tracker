@@ -108,12 +108,8 @@ export default {
             startDate = new Date(startDate);
             endDate = new Date(endDate);
 
-            let startTime = startDate.getTime();
-            let endTime = endDate.getTime();
-
-            let diffStartEnd = endTime - startTime;
-
-            return diffStartEnd / (1000 * 3600 * 24);
+            let diffTime = Math.abs(endDate - startDate);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         },
         toggleMeatballMenu() {
             this.meatballMenuDisplay = !this.meatballMenuDisplay;
