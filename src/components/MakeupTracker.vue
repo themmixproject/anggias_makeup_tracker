@@ -42,16 +42,8 @@
             <div class="tracker-list-item-attribute-container">
                 <div class="tracker-title">{{ trackerData.makeupName }}</div>
                 <div class="tracker-date-wrapper">
-                    Opened Date:
-                    <span class="tracker-date">{{
-                        trackerData.openedDate
-                    }}</span>
-                </div>
-                <div class="tracker-date-wrapper">
-                    Due Date:
-                    <span class="tracker-date">{{
-                        trackerData.expiresInMonths
-                    }}</span>
+                    due date:
+                    <span class="tracker-date">{{ expireDate }}</span>
                 </div>
                 <div class="tracker-progress-bar">
                     <div
@@ -99,6 +91,22 @@ export default {
 
             if (widthPercentage > 100) return "100%";
             else return String(widthPercentage) + "%";
+        },
+        expireDate() {
+            let openedDate = new Date(this.trackerData.openedDate);
+            let approxExpireDate = new Date(
+                new Date(openedDate).setMonth(
+                    openedDate.getMonth() + this.trackerData.expiresInMonths
+                )
+            );
+
+            return (
+                approxExpireDate.getDay() +
+                "-" +
+                approxExpireDate.getMonth() +
+                "-" +
+                approxExpireDate.getFullYear()
+            );
         }
     },
     methods: {
@@ -154,7 +162,6 @@ export default {
             display: flex;
             flex-direction: row;
             position: absolute;
-            // float: right;
             top: 0px;
             right: 0px;
             .meatball-menu-icon {
@@ -214,13 +221,13 @@ export default {
         .tracker-list-item-attribute-container {
             padding-left: 0.5em;
             flex-grow: 1;
-            // white-space: nowrap;
             text-align: initial;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
 
             display: flex;
+            gap: 0.3em;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: space-between;
 
             overflow: hidden;
             text-overflow: ellipsis;
@@ -236,8 +243,14 @@ export default {
                 padding-right: 33px;
             }
 
-            .tracker-date {
-                display: inline-block;
+            .tracker-date-wrapper {
+                color: #aa6589;
+                font-size: 0.8em;
+                font-style: italic;
+                .tracker-date {
+                    display: inline-block;
+                    text-decoration: wavy;
+                }
             }
 
             .tracker-progress-bar {
