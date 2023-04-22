@@ -138,110 +138,111 @@ export default {
     background-color: #ffa0d1;
     padding: 0.5em;
     padding-right: 0.8em;
-}
-.meatball-menu-wrapper {
-    position: relative;
-    .meatball-menu-overlay {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: transparent;
+    .meatball-menu-wrapper {
+        position: relative;
+        .meatball-menu-overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: transparent;
+        }
+
+        .meatball-menu-icon-container {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            // float: right;
+            top: 0px;
+            right: 0px;
+            .meatball-menu-icon {
+                height: 8px;
+                width: 8px;
+                margin: 0 1.5px;
+                border-radius: 50%;
+                background-color: #15031b;
+            }
+        }
+
+        .meatball-menu-container {
+            position: absolute;
+            right: 0px;
+            top: 20px;
+            background-color: rgb(228, 228, 228);
+            border-radius: 10px;
+
+            .meatball-menu-item {
+                text-align: center;
+                padding: 10px 20px;
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+            }
+        }
     }
 
-    .meatball-menu-icon-container {
+    .tracker-list-item-content-container {
         display: flex;
         flex-direction: row;
-        position: absolute;
-        // float: right;
-        top: 0px;
-        right: 0px;
-        .meatball-menu-icon {
-            height: 8px;
-            width: 8px;
-            margin: 0 1.5px;
+
+        .icon-container {
+            height: 50px;
+            width: 50px;
+            background-color: #e585b6;
+
             border-radius: 50%;
-            background-color: #15031b;
+            flex-shrink: 0;
+            align-self: center;
+            padding: 10px;
+
+            .icon-vector {
+                height: inherit;
+                width: inherit;
+            }
         }
-    }
+        .tracker-list-item-attribute-container {
+            padding-left: 0.5em;
+            flex-grow: 1;
+            // white-space: nowrap;
+            text-align: initial;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
 
-    .meatball-menu-container {
-        position: absolute;
-        right: 0px;
-        top: 20px;
-        background-color: rgb(228, 228, 228);
-        border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
 
-        .meatball-menu-item {
-            text-align: center;
-            padding: 10px 20px;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-        }
-    }
-}
-
-.tracker-list-item-content-container {
-    display: flex;
-    flex-direction: row;
-
-    .icon-container {
-        height: 50px;
-        width: 50px;
-        background-color: #e585b6;
-
-        border-radius: 50%;
-        flex-shrink: 0;
-        align-self: center;
-        padding: 10px;
-
-        .icon-vector {
-            height: inherit;
-            width: inherit;
-        }
-    }
-    .tracker-list-item-attribute-container {
-        padding-left: 0.5em;
-        flex-grow: 1;
-        // white-space: nowrap;
-        text-align: initial;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        .tracker-title {
-            font-size: 1.5em;
-            font-weight: normal;
-
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
 
-            padding-right: 33px;
-        }
+            .tracker-title {
+                font-size: 1.5em;
+                font-weight: normal;
 
-        .tracker-date {
-            display: inline-block;
-        }
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
 
-        .tracker-progress-bar {
-            background-color: #df68a4;
-            height: 15px;
+                padding-right: 33px;
+            }
 
-            border-radius: 20px;
-        }
+            .tracker-date {
+                display: inline-block;
+            }
 
-        .tracker-progress-bar-indicator {
-            background-color: #a10956;
-            height: inherit;
-            border-radius: 100px;
+            .tracker-progress-bar {
+                background-color: #df68a4;
+                height: 15px;
+
+                border-radius: 20px;
+            }
+
+            .tracker-progress-bar-indicator {
+                background-color: #a10956;
+                height: inherit;
+                border-radius: 100px;
+                min-width: 15px;
+            }
         }
     }
 }
