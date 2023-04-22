@@ -28,6 +28,7 @@
                 <div class="meatball-menu-item" @click="deleteTracker">
                     delete
                 </div>
+                <hr />
                 <div class="meatball-menu-item" @click="editTracker">edit</div>
             </div>
         </div>
@@ -169,7 +170,8 @@ export default {
             position: absolute;
             right: 0px;
             top: 20px;
-            background-color: rgb(228, 228, 228);
+            background-color: rgb(255, 185, 223);
+            box-shadow: 0 0 0.8em 0.3em rgba(0, 0, 0, 0.1);
             border-radius: 10px;
 
             .meatball-menu-item {
@@ -178,6 +180,14 @@ export default {
                 user-select: none;
                 -webkit-user-select: none;
                 -moz-user-select: none;
+            }
+
+            hr {
+                margin: 0;
+                padding: 0;
+                height: 1px;
+                border: 0;
+                background-color: rgba(0, 0, 0, 0.123);
             }
         }
     }
