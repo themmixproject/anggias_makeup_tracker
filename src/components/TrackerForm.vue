@@ -1,57 +1,68 @@
 <template>
-    <div id="tracker-form-container">
-        <div id="tracker-form-header">
-            <h1 v-if="editTrackerData">Edit Tracker</h1>
-            <h1 v-else>Create New Tracker</h1>
-            <button @click="closeForm" id="form-close-button">✕</button>
-        </div>
-        <div class="form-input-container">
-            <div class="form-label-container">
-                <label>Makeup name:</label>
+    <div>
+        <div
+            id="tracker-form-overlay"
+            @click="closeForm"
+            @touchend="closeForm"
+        ></div>
+        <div id="tracker-form-container">
+            <div id="tracker-form-header">
+                <h1 v-if="editTrackerData">Edit Tracker</h1>
+                <h1 v-else>Create New Tracker</h1>
+                <button @click="closeForm" id="form-close-button">✕</button>
             </div>
-            <input
-                type="text"
-                class="form-input"
-                ref="makeupNameInput"
-                v-model="makeupName"
-            />
-        </div>
-        <div class="form-input-container">
-            <div class="form-label-container">
-                <label>Start date:</label>
+            <div class="form-input-container">
+                <div class="form-label-container">
+                    <label>Makeup name:</label>
+                </div>
+                <input
+                    type="text"
+                    class="form-input"
+                    ref="makeupNameInput"
+                    v-model="makeupName"
+                />
             </div>
-            <input type="date" class="form-input" v-model="openedDate" />
-        </div>
-        <div class="form-input-container">
-            <div class="form-label-container">
-                <label>Expire date (in months):</label>
+            <div class="form-input-container">
+                <div class="form-label-container">
+                    <label>Start date:</label>
+                </div>
+                <input type="date" class="form-input" v-model="openedDate" />
             </div>
-            <input type="number" class="form-input" v-model="expiresInMonths" />
-        </div>
+            <div class="form-input-container">
+                <div class="form-label-container">
+                    <label>Expire date (in months):</label>
+                </div>
+                <input
+                    type="number"
+                    class="form-input"
+                    v-model="expiresInMonths"
+                />
+            </div>
 
-        <div id="icon-selector-container">
-            <div id="icon-selector-label-container">
-                <label>Select icon</label>
+            <div id="icon-selector-container">
+                <div id="icon-selector-label-container">
+                    <label>Select icon</label>
+                </div>
+                <IconSelector
+                    @selectIcon="setSelectedIconPath"
+                    @iconsLoaded="setDefaultIconPath"
+                    :editTrackerIconPath="selectedIconPath"
+                />
             </div>
-            <IconSelector
-                @selectIcon="setSelectedIconPath"
-                @iconsLoaded="setDefaultIconPath"
-                :editTrackerIconPath="selectedIconPath"
-            />
-        </div>
 
-        <div id="edit-tracker-button-container" v-if="editTrackerData">
-            <button @click="confirmEdit">Confirm</button>
-            <button @click="closeForm">Cancel</button>
+            <div id="edit-tracker-button-container" v-if="editTrackerData">
+                <button @click="confirmEdit">Confirm</button>
+                <button @click="closeForm">Cancel</button>
+            </div>
+            <button
+                v-else
+                @click="createTracker"
+                id="create-tracker-button"
+                :disabled="makeupName === '' || selectedIconPath === ''"
+            >
+                Create
+            </button>
         </div>
-        <button
-            v-else
-            @click="createTracker"
-            id="create-tracker-button"
-            :disabled="makeupName === '' || selectedIconPath === ''"
-        >
-            Create
-        </button>
     </div>
 </template>
 
@@ -60,6 +71,7 @@ import IconSelector from "./IconSelector.vue";
 
 export default {
     props: ["editTrackerIndex", "editTrackerData", "formIsDisplayed"],
+    emits: ["toggleDisplayForm"],
     components: {
         IconSelector
     },
@@ -149,9 +161,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-    border: 0;
-    outline: 0;
+#tracker-form-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    z-index: 1;
 }
 
 #tracker-form-container {
@@ -163,6 +180,7 @@ button {
     padding: 10px;
     color: black;
     background-color: white;
+    z-index: 1;
 
     border-radius: 20px 20px 0 0;
     box-shadow: 0 0 0.8em 0.3em rgba(0, 0, 0, 0.1);
@@ -179,10 +197,12 @@ button {
 
         #form-close-button {
             background-color: transparent;
-            font-size: 1.5em;
+            font-size: 25px;
             padding: 0;
             color: black;
             font-weight: bold;
+            border: 0;
+            outline: 0;
         }
     }
     .form-input-container {
