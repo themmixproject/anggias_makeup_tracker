@@ -59,12 +59,14 @@ export default {
     display: flex;
     flex-direction: row;
 
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .icon-wrapper {
     height: 50px;
     width: 50px;
+    padding: 2px;
+    border: 5px solid transparent;
 
     .cosmetic-icon {
         height: inherit;
@@ -72,6 +74,9 @@ export default {
     }
 }
 .icon-wrapper.active {
-    background-color: hotpink;
+    border: 5px solid #ffa0d1;
+    border-radius: 12px;
+    // border-radius: 50%;
+    // padding: 5px;
 }
 </style>

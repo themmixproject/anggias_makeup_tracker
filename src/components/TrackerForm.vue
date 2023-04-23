@@ -31,7 +31,7 @@
 
         <div id="icon-selector-container">
             <div id="icon-selector-label-container">
-                <label>Select icon:</label>
+                <label>Select icon</label>
             </div>
             <IconSelector
                 @selectIcon="setSelectedIconPath"
@@ -144,14 +144,6 @@ export default {
 
             this.formValuesAreLoaded = true;
         }
-
-        // else if (this.editTrackerData === null && !this.formValuesAreLoaded) {
-        //     this.formValuesAreLoaded = true;
-        // }
-    },
-    mounted() {
-        // this.loadDefaultValues();
-        // this.formValuesAreLoaded = true;
     }
 };
 </script>
@@ -169,11 +161,11 @@ button {
     right: 0;
     margin: 0 10px 0 10px;
     padding: 10px;
-    color: white;
-
-    background-color: rgb(117, 117, 117);
+    color: black;
+    background-color: white;
 
     border-radius: 20px 20px 0 0;
+    box-shadow: 0 0 0.8em 0.3em rgba(0, 0, 0, 0.1);
 
     #tracker-form-header {
         display: flex;
@@ -182,19 +174,23 @@ button {
         h1 {
             font-size: 1.3em;
             margin: 0;
+            font-weight: 500;
         }
 
         #form-close-button {
             background-color: transparent;
             font-size: 1.5em;
             padding: 0;
-            color: white;
+            color: black;
+            font-weight: bold;
         }
     }
     .form-input-container {
         margin: 10px 0;
         display: flex;
         flex-direction: row;
+        background-color: #e2e2e2;
+        border-radius: 0.5em;
 
         .form-label-container {
             display: flex;
@@ -207,25 +203,42 @@ button {
                 text-align: left;
                 white-space: nowrap;
                 margin-right: 7px;
+                color: #757575;
+                padding-left: 10px;
             }
         }
 
         input {
             font-size: 1.2em;
             width: 100%;
-            padding: 3px;
+            padding: 10px;
             margin: 0;
             border: 0;
+            outline: 0;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #e2e2e2;
+            border-radius: inherit;
+        }
+
+        input:focus {
+            background-color: #d0d0d0;
         }
     }
 
     #icon-selector-container {
         margin: 10px 0;
+        background-color: #e2e2e2;
+        padding: 10px;
+        border-radius: 0.5em;
 
         #icon-selector-label-container {
             font-size: 1.2em;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+
+            label {
+                color: #757575;
+            }
         }
     }
 
@@ -233,7 +246,7 @@ button {
         padding: 10px;
         font-size: 1em;
 
-        background-color: rgb(158, 200, 255);
+        background-color: #ffa0d1;
         border: 0;
 
         width: 100%;
@@ -250,7 +263,7 @@ button {
             padding: 10px;
             font-size: 1em;
 
-            background-color: rgb(158, 200, 255);
+            background-color: rgb(255 160 209);
             border: 0;
 
             width: 100%;
