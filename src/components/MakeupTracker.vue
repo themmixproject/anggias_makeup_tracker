@@ -33,11 +33,14 @@
                 "
             ></div>
             <div class="meatball-menu" v-show="meatballMenuDisplay">
-                <div class="meatball-menu-item" @click="deleteTracker">
+                <div class="meatball-menu-item" @click="editTracker">edit</div>
+                <hr />
+                <div
+                    class="meatball-menu-item delete-button"
+                    @click="deleteTracker"
+                >
                     delete
                 </div>
-                <hr />
-                <div class="meatball-menu-item" @click="editTracker">edit</div>
             </div>
             <div
                 class="meatball-menu-icon-container"
@@ -259,6 +262,18 @@ export default {
                 -moz-user-select: none;
             }
 
+            .meatball-menu-item:first-child {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+            .meatball-menu-item:last-child {
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
+
+            .delete-button {
+                color: #ff384c;
+            }
             hr {
                 margin: 0;
                 padding: 0;
