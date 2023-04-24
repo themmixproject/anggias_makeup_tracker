@@ -1,5 +1,7 @@
 <template>
-    <button id="add-tracker-button" @click="displayForm">+</button>
+    <button id="add-tracker-button" @click="displayForm">
+        <div id="add-tracker-icon"></div>
+    </button>
 </template>
 
 <script>
@@ -18,18 +20,25 @@ export default {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    line-height: 50px;
-    text-align: center;
-    color: white;
     box-shadow: 0 0 0.8em 0.3em rgba(0, 0, 0, 0.1);
     outline: 0;
     border: 0;
-
-    font-weight: bold;
-    font-size: 3.5em;
+    padding: 0;
 
     position: fixed;
     bottom: 15px;
     right: 15px;
+    color: white;
+
+    #add-tracker-icon {
+        background: url("../assets/plus-icon.svg");
+        background-size: contain;
+        position: absolute;
+
+        top: 8px;
+        bottom: 8px;
+        left: 8px;
+        right: 8px;
+    }
 }
 </style>
